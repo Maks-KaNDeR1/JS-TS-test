@@ -37,7 +37,7 @@ beforeEach(() => {
         ],
         governmentBuildings: [
             {
-                type: "HOSPITAL", budget: 200000, staffCount: 200,
+                type: "HOSPITAL", budget: 200000, stuffCount: 200,
                 address: {
                     street: {
                         title: "Central Str"
@@ -45,7 +45,7 @@ beforeEach(() => {
                 }
             },
             {
-                type: "FIRE-STATION", budget: 500000, staffCount: 1000,
+                type: "FIRE-STATION", budget: 500000, stuffCount: 1000,
                 address: {
                     street: {
                         title: "South Str"
@@ -78,12 +78,12 @@ test('House should be repared', () => {
 test('staff should be increased', () => {
     toFireStaff(city.governmentBuildings[0], 20)
 
-    expect(city.governmentBuildings[0].staffCount).toBe(180)
+    expect(city.governmentBuildings[0].stuffCount).toBe(180)
 })
 test('House should be repareds', () => {
     toHireStaff(city.governmentBuildings[0], 20)
 
-    expect(city.governmentBuildings[0].staffCount).toBe(220)
+    expect(city.governmentBuildings[0].stuffCount).toBe(220)
 })
 
 test('Greeting message should be corrected', () => {

@@ -1,26 +1,23 @@
 import { CityType } from './../02_object/02_02';
-import {demolishHousesOnTheStreet, getBuildingsWithStaff} from "./04_02";
+import { createMessages, getStreetsTitlesOfHouses, getStreetsTitlesOfGovBuildings } from './05_02';
 
 let city: CityType
 
 beforeEach(() => {
     city = {
-        title: 'NewYork',
+        title: 'New York',
         houses: [
             {
-                id: 1,
                 buildedAt: 2012,
                 repaired: false,
                 address: {number: 100, street: {title: 'White street'}}
             },
             {
-                id: 2,
                 buildedAt: 2008,
                 repaired: false,
                 address: {number: 100, street: {title: 'Happy street'}}
             },
             {
-                id: 3,
                 buildedAt: 2020,
                 repaired: false,
                 address: {number: 101, street: {title: 'Happy street'}}
@@ -51,16 +48,30 @@ beforeEach(() => {
     }
 })
 
-test('Houses should be destroyed', () => {
-    demolishHousesOnTheStreet(city, 'Happy street')
+test('list of streets titles of goverments buildings', () => {
+    let streetsNames = getStreetsTitlesOfGovBuildings(city.governmentBuildings)
 
-    expect(city.houses.length).toBe(1)
-    expect(city.houses[0].id).toBe(1)
+    expect(streetsNames.length).toBe(2)
+    expect(streetsNames[0]).toBe('Central street')
+    expect(streetsNames[1]).toBe('South street')
 })
 
-test('buildings with correct staff', () => {
-    let buildings = getBuildingsWithStaff(city.governmentBuildings, 500)
+test('list of streets titles', () => {
+    let streetsNames = getStreetsTitlesOfHouses(city.houses)
 
-    expect(buildings.length).toBe(1)
-    expect(buildings[0].type).toBe('FIRE-STATION')
+    expect(streetsNames.length).toBe(3)
+    expect(streetsNames[0]).toBe('White street')
+    expect(streetsNames[1]).toBe('Happy street')
+    expect(streetsNames[2]).toBe('Happy street')
+})
+
+test('create greeting messages for streets', () => {
+    let messages = createMessages(city.houses)
+
+    expect(messages.length).toBe(3)
+    expect(messages[0]).toBe('Hello guys from White street')
+    expect(messages[1]).toBe('Hello guys from Happy street')
+    expect(messages[2]).toBe('Hello guys from Happy street')
+
+
 })
